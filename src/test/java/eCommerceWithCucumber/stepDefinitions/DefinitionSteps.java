@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import cucumber.api.java.en.*;
 import eCommerceWithCucumber.pageObjects.AddCustomerPage;
 import eCommerceWithCucumber.pageObjects.LoginPage;
+import eCommerceWithCucumber.pageObjects.SearchCustomerPage;
 
 
 
@@ -116,5 +117,30 @@ public class DefinitionSteps extends BaseClass {
 	   Assert.assertTrue(driver.getPageSource().contains("The new customer  has been added successfully"));
 	   
 	}
+	
+	//search email id of customer.......................................................................................
+	@When("enter customer email id")
+	public void enter_customer_email_id() {
+		searchCust=new SearchCustomerPage(driver);
+		searchCust.passEmail("victoria_victoria@nopCommerce.com");
+	}
+
+	@When("click on customer search button")
+	public void click_on_customer_search_button() throws InterruptedException {
+		searchCust.clickSearch();
+		Thread.sleep(2000);
+	}
+
+	@Then("user should found customer email id in the search table")
+	public void user_should_found_customer_email_id_in_the_search_table() {
+		boolean status=searchCust.searchCustomerEmail("victoria_victoria@nopCommerce.com");
+		if(status==true) {
+			System.out.println("The email is found");
+			
+		}else {
+			System.out.println("The email not found");
+		}
+	}
+
 	
 }

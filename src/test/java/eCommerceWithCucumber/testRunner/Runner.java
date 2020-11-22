@@ -8,7 +8,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions
 (features=".//Features//Customers.feature",
 glue="eCommerceWithCucumber.stepDefinitions",
-dryRun=true,
+dryRun=false,
 monochrome=true,
 plugin= {
 		"pretty",
